@@ -1,26 +1,31 @@
+/* 커스텀 폰트 설정 */
 @font-face {
-  font-family: 'KBO-Dia-Gothic_bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+  font-family: "KBO-Dia-Gothic_bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff")
+    format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'GangwonEduPowerExtraBoldA';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+  font-family: "GangwonEduPowerExtraBoldA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
+/* 컨테이너 스타일 설정 */
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   background-color: #f9f9f9;
-  font-family: 'KBO-Dia-Gothic_bold', sans-serif; /* Apply the custom font */
+  font-family: "KBO-Dia-Gothic_bold", sans-serif; /* 커스텀 폰트 적용 */
 }
 
+/* 캡차 박스 스타일 설정 */
 .captchaBox {
   display: flex;
   flex-direction: column;
@@ -38,9 +43,10 @@
   position: relative;
   margin: 10% auto;
   font-size: 1.5rem;
-  font-family: 'GangwonEduPowerExtraBoldA', sans-serif; /* Apply the custom font */
+  font-family: "GangwonEduPowerExtraBoldA", sans-serif; /* 커스텀 폰트 적용 */
 }
 
+/* 캡차 타이틀 스타일 설정 */
 .captchaTitle {
   font-size: 2rem;
   position: absolute;
@@ -49,6 +55,7 @@
   color: #000000;
 }
 
+/* 캡차 내용 스타일 설정 */
 .captchaContent {
   display: flex;
   flex-direction: column;
@@ -57,6 +64,7 @@
   margin: 2%;
 }
 
+/* 버튼 스타일 설정 */
 .btn-hover {
   margin: 0%;
   text-align: center;
@@ -66,28 +74,35 @@
   color: #fff;
   cursor: pointer;
   height: 55px;
-  text-align:center;
+  text-align: center;
   border: none;
   background-size: 300% 100%;
-
   border-radius: 50px;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
+/* 버튼 호버 스타일 설정 */
 .btn-hover:hover {
   background-position: 100% 0;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .btn-hover:focus {
   outline: none;
 }
 
+/* 버튼 색상 설정 */
 .btn-hover.color-1 {
-  background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+  background-image: linear-gradient(
+    to right,
+    #25aae1,
+    #40e495,
+    #30dd8a,
+    #2bb673
+  );
   box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
 }

@@ -1,4 +1,4 @@
-/* styles/404.module.css */
+/* 컨테이너 스타일 설정 */
 .container {
   display: flex;
   flex-direction: column;
@@ -8,18 +8,21 @@
   text-align: center;
 }
 
+/* 타이틀 스타일 설정 */
 .title {
   font-size: 3rem;
   margin-bottom: 1rem;
   color: #333;
 }
 
+/* 설명 스타일 설정 */
 .description {
   font-size: 1.5rem;
   color: #777;
   margin-bottom: 2rem;
 }
 
+/* 링크 스타일 설정 */
 .link {
   font-size: 1.2rem;
   color: #0070f3;
@@ -27,6 +30,7 @@
   transition: color 0.2s;
 }
 
+/* 링크 호버 스타일 설정 */
 .link:hover {
   color: #004080;
 }

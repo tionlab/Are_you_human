@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useRef } from "react";
 
+// camera 미완성 입니다. 접근하지 마세요.
 const CameraCapture = () => {
   const [stream, setStream] = useState(null);
   const videoRef = useRef(null);
@@ -7,27 +8,30 @@ const CameraCapture = () => {
 
   const startCamera = async () => {
     try {
-      const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+      });
       setStream(mediaStream);
       videoRef.current.srcObject = mediaStream;
     } catch (error) {
-      console.error('Error accessing the camera:', error);
+      console.error("Error accessing the camera:", error);
     }
   };
-
+  // camera 미완성 입니다. 접근하지 마세요.
   const capturePhoto = () => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     if (video && canvas) {
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
-      canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-      const photoURL = canvas.toDataURL('image/png');
-      // 이제 photoURL을 사용하여 필요한 작업을 수행할 수 있습니다.
-      console.log('Captured photo:', photoURL);
+      canvas
+        .getContext("2d")
+        .drawImage(video, 0, 0, canvas.width, canvas.height);
+      const photoURL = canvas.toDataURL("image/png");
+      console.log("Captured photo:", photoURL);
     }
   };
-
+  // camera 미완성 입니다. 접근하지 마세요.
   return (
     <div>
       <h1>Camera Capture</h1>
@@ -35,7 +39,7 @@ const CameraCapture = () => {
         <div>
           <video ref={videoRef} autoPlay playsInline />
           <button onClick={capturePhoto}>Capture</button>
-          <canvas ref={canvasRef} style={{ display: 'none' }} />
+          <canvas ref={canvasRef} style={{ display: "none" }} />
         </div>
       ) : (
         <button onClick={startCamera}>Start Camera</button>

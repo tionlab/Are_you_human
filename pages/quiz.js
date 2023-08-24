@@ -11,19 +11,23 @@ export default function Quiz() {
   const [imageSrc2, setImageSrc2] = useState("");
 
   useEffect(() => {
+    // 무작위로 1 또는 2를 선택하여 이미지 카테고리를 결정
     const random = Math.floor(Math.random() * 2) + 1;
-    const category = random == 1 ? "fake" : "real";
-    const category2 = random == 1 ? "real" : "fake";
+    const category = random === 1 ? "fake" : "real";
+    const category2 = random === 1 ? "real" : "fake";
 
-    console.log("----------"); //디버그용 라벨링
+    // 선택된 이미지 카테고리를 로그로 출력 (디버그용 라벨링 / 정답을 노출시키므로 추후 삭제 예정)
+    console.log("----------");
     console.log("Answer");
     console.log(category);
     console.log(category2);
     console.log("----------");
 
+    // 1에서 NUM_IMAGES 사이의 무작위 숫자를 선택하여 이미지 결정
     const randomImageNumber1 = Math.floor(Math.random() * NUM_IMAGES) + 1;
     const randomImageNumber2 = Math.floor(Math.random() * NUM_IMAGES) + 1;
 
+    // 이미지 경로를 설정
     setImageSrc1(
       `/images/${category}/${
         category === "fake" ? "fake" : "real"
@@ -37,8 +41,11 @@ export default function Quiz() {
   }, []);
 
   const handleImageClick = (chosenImage) => {
+    // 선택한 이미지의 카테고리를 확인하고 정답 여부를 결정
     const correctImageCategory = chosenImage.includes("real") ? "real" : "fake";
     const isCorrect = correctImageCategory === "real";
+
+    // 결과 페이지로 이동하며 선택한 이미지와 정답 여부를 전달
     router.push(
       `/result?answer=${isCorrect}&selectedImage=${encodeURIComponent(
         chosenImage
@@ -51,7 +58,10 @@ export default function Quiz() {
       <div className={styles.captchaBox}>
         <div className={styles.captchaTitle}>Are You Human?</div>
         <div className={styles.captchaContent}>
-          <p>다음 중 실제 인간의 사진을 선택하세요! (인공지능 생성 인간 vs 실제 인간)</p>
+          <p>
+            다음 중 실제 인간의 사진을 선택하세요! (인공지능 생성 인간 vs 실제
+            인간)
+          </p>
           <div className={styles.quizImagesContainer}>
             <div className={styles.quizImage}>
               <img

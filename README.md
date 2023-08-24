@@ -19,7 +19,13 @@
 
 **Development language : Next.js V13**
 
+
+**Netlify 환경에선 최초 실행시 사진 판독 인공지능의 로딩이 오래 걸릴 수 있습니다. 처음 1회 이후 괜찮아집니다. (새로고침시 초기화 됨)**
+
+
+
 ## Support
 For support, please use this repository's GitHub Issues tracking service, or join the Discord.
+
 
 __Copiright 2023 Tionlab All right reserved__

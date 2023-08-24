@@ -9,6 +9,7 @@ const goodmp3 = "/audio/good.mp3";
 const wrongmp3 = "/audio/wrong.mp3";
 
 async function preprocessImage(imageElement) {
+  // 이미지를 전처리하여 모델에 입력 가능한 형식으로 변환
   const imageTensor = tf.browser.fromPixels(imageElement).toFloat();
   const resizedImage = tf.image.resizeBilinear(imageTensor, [256, 256]);
   const normalizedImage = resizedImage.div(255.0);
@@ -28,10 +29,10 @@ export default function Result() {
 
   useEffect(() => {
     async function firework() {
+      // 화면에 폭죽 애니메이션 효과를 보여주는 함수
       var duration = 15 * 100;
       var animationEnd = Date.now() + duration;
       var defaults = { startVelocity: 25, spread: 360, ticks: 50, zIndex: 0 };
-      //  startVelocity: 범위, spread: 방향, ticks: 갯수
 
       function randomInRange(min, max) {
         return Math.random() * (max - min) + min;
@@ -45,7 +46,6 @@ export default function Result() {
         }
 
         var particleCount = 50 * (timeLeft / duration);
-        // since particles fall down, start a bit higher than random
         confetti(
           Object.assign({}, defaults, {
             particleCount,
@@ -60,7 +60,9 @@ export default function Result() {
         );
       }, 250);
     }
+
     async function loadModelAndPredict() {
+      // 모델을 로드하고 선택한 이미지를 예측하여 결과를 보여주는 함수
       try {
         const model = await tf.loadLayersModel(modelUrl);
         const imageElement = document.getElementById("result-image");
@@ -73,7 +75,6 @@ export default function Result() {
         const confidence = getConfidence(predictionData, predictedClass);
 
         setPredictionResult({ predictedClass, confidence });
-        console.log(predictedClass);
         if (answer === "true") {
           var type = "실제 인간";
         } else if (answer === "false") {
@@ -105,6 +106,7 @@ export default function Result() {
   }, [answer]);
 
   const playAudio = (isCorrect) => {
+    // 정답 여부에 따라 음향 효과를 재생하는 함수
     if (isCorrect == true) {
       var sound = goodmp3;
     } else if (isCorrect == false) {
@@ -115,10 +117,12 @@ export default function Result() {
   };
 
   const getPredictedClass = (predictionData) => {
+    // 모델 예측 결과를 기반으로 예측된 클래스를 반환하는 함수
     return predictionData[0] < 0.5 ? "인공지능 생성 인간" : "실제 인간";
   };
 
   const getConfidence = (predictionData, predictedClass) => {
+    // 모델 예측 결과와 예측된 클래스를 기반으로 확신도를 계산하는 함수
     const confidencePercentage = predictionData[0] * 100;
     if (predictedClass === "실제 인간") {
       return confidencePercentage.toFixed(2);
@@ -127,10 +131,6 @@ export default function Result() {
     }
     return "N/A";
   };
-
-  console.log(answer);
-
-  console.log(correct);
 
   return (
     <div className={styles.container}>
