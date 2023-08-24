@@ -37,10 +37,10 @@ export default function Quiz() {
   }, []);
 
   const handleImageClick = (chosenImage) => {
-    const correctImageCategory = id === "fake" ? "real" : "fake";
-    const isCorrect = chosenImage.includes(correctImageCategory);
+    const correctImageCategory = chosenImage.includes("real") ? "real" : "fake";
+    const isCorrect = correctImageCategory === "real";
     router.push(
-      `/result/${id}?answer=${isCorrect}&selectedImage=${encodeURIComponent(
+      `/result?answer=${isCorrect}&selectedImage=${encodeURIComponent(
         chosenImage
       )}`
     );
@@ -48,20 +48,29 @@ export default function Quiz() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles["quiz-title"]}>Guess the Face</h2>
-      <div className={styles["quiz-images-container"]}>
-        <img
-          className={styles["quiz-image"]}
-          src={imageSrc1}
-          alt="Face 1"
-          onClick={() => handleImageClick(imageSrc1)}
-        />
-        <img
-          className={styles["quiz-image"]}
-          src={imageSrc2}
-          alt="Face 2"
-          onClick={() => handleImageClick(imageSrc2)}
-        />
+      <div className={styles.captchaBox}>
+        <div className={styles.captchaTitle}>Are You Human?</div>
+        <div className={styles.captchaContent}>
+          <p>다음 중 실제 인간의 사진을 선택하세요! (인공지능 생성 인간 vs 실제 인간)</p>
+          <div className={styles.quizImagesContainer}>
+            <div className={styles.quizImage}>
+              <img
+                className={styles["quiz-image"]}
+                src={imageSrc1}
+                alt="Face 1"
+                onClick={() => handleImageClick(imageSrc1)}
+              />
+            </div>
+            <div className={styles.quizImage}>
+              <img
+                className={styles["quiz-image"]}
+                src={imageSrc2}
+                alt="Face 2"
+                onClick={() => handleImageClick(imageSrc2)}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
