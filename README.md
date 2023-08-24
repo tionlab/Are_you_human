@@ -12,9 +12,6 @@
     </picture>
   </a>
 </p>
-
-
-
 </div>
 
 # Are you human?
