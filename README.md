@@ -2,7 +2,6 @@
   
 # Are you human? - 인공지능 생성 인간 VS 실제 인간
 ## [![Netlify Status](https://api.netlify.com/api/v1/badges/7bed3c09-1488-44ff-a51b-3fc4161ddd8b/deploy-status)](https://app.netlify.com/sites/gti-captcha/deploys)
-  
 
 <p align="center">
   <a href="https://nextjs.org">
@@ -14,7 +13,7 @@
 </p>
 </div>
 
-**Development language : Next.js V13**
+  **Development language : Next.js V13**
 
 # Are you human?
 
