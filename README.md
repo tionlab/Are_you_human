@@ -12,7 +12,6 @@
   </a>
 </p>
 </div>
-
   **Development language : Next.js V13**
 
 # Are you human?
