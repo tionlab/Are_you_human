@@ -18,7 +18,7 @@ async function preprocessImage(imageElement) {
 
 export default function Result() {
   const router = useRouter();
-  const { answer, selectedImage } = router.query;
+  const { answer, selectedImage, score } = router.query;
   const startQuiz = () => {
     router.push(`/quiz`);
   };
@@ -26,6 +26,7 @@ export default function Result() {
   const [isLoading, setIsLoading] = useState(true);
   const [correct, setCorrect] = useState("정답 확인 중 . . .");
   const [backup, setBackup] = useState("");
+  const [scored, setScored] = useState(score)
 
   useEffect(() => {
     async function firework() {
@@ -134,6 +135,7 @@ export default function Result() {
 
   return (
     <div className={styles.container}>
+      <p>{scored}</p>
       <div className={styles.captchaBox}>
         <div className={styles.captchaTitle}>Are You Human?</div>
         <div className={styles.captchaContent}>

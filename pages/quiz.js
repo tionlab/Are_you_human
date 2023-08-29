@@ -9,8 +9,10 @@ export default function Quiz() {
 
   const [imageSrc1, setImageSrc1] = useState("");
   const [imageSrc2, setImageSrc2] = useState("");
+  const [score, setScore] = useState("");
 
   useEffect(() => {
+    setScore(4)
     // 무작위로 1 또는 2를 선택하여 이미지 카테고리를 결정
     const random = Math.floor(Math.random() * 2) + 1;
     const category = random === 1 ? "fake" : "real";
@@ -49,18 +51,30 @@ export default function Quiz() {
     router.push(
       `/result?answer=${isCorrect}&selectedImage=${encodeURIComponent(
         chosenImage
-      )}`
+      )}&score=${score}`
     );
   };
 
   return (
     <div className={styles.container}>
+      {score}
       <div className={styles.captchaBox}>
-        <div className={styles.captchaTitle}>Are You Human?</div>
+        <div className={styles.captchaTitle}>
+          <div className={styles.captchaTitleContent}>
+          <div className={styles.captchaTitleContent1}>
+          다음을 선택하세요<br/>
+          </div>
+          <div className={styles.captchaTitleContent2}>
+          실제 인간의 사진<br/>
+          </div>
+          <div className={styles.captchaTitleContent3}>
+          (인공지능 생성 인간 vs 실제 인간)
+          </div>
+            </div>
+          </div>
         <div className={styles.captchaContent}>
           <p>
-            다음 중 실제 인간의 사진을 선택하세요! (인공지능 생성 인간 vs 실제
-            인간)
+            
           </p>
           <div className={styles.quizImagesContainer}>
             <div className={styles.quizImage}>

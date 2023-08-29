@@ -32,44 +32,64 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 90%;
-  max-width: 1000px;
+  max-width: 500;
   padding: 1%;
-  text-align: center;
   background-color: #ffffff;
-  border-radius: 5%;
-  border: 2px solid #85dcff;
+  border: 2px solid #c0c0c0;
   box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   margin: 10% auto;
-  font-size: 1.5rem;
   font-family: "GangwonEduPowerExtraBoldA", sans-serif; /* 커스텀 폰트 적용 */
 }
 
 /* 캡차 타이틀 스타일 설정 */
 .captchaTitle {
-  font-size: 2rem;
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: #000000;
-}
-
-/* 캡차 내용 스타일 설정 */
-.captchaContent {
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  width: 95%;
+  padding: 1%;
+  background-color: #4990e2;
+  border: 2px solid #c0c0c0;
+}
+
+.captchaTitleContent {
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  padding: 5%;
+  color: #ffffff;
+}
+
+.captchaTitleContent1 {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+.captchaTitleContent2 {
+  margin-top: 0.5rem;
+  font-size: 3rem;
+  color: #ffffff;
+}
+.captchaTitleContent3 {
+  font-size: 1.6rem;
+  color: #ffffff;
+}
+/* 캡차 내용 스타일 설정 */
+.captchaContent {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
 }
 
 /* 퀴즈 이미지 스타일 설정 */
 .quizImage {
   padding: 1%;
-  max-width: 100%;
+  max-width: 95%;
   cursor: pointer;
-  border: 1px solid #ddd;
+  border: 1px solid #cfcfcf;
   border-radius: 4px;
   margin: 0 1rem;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -81,11 +101,9 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 퀴즈 이미지 컨테이너 스타일 설정 */
 .quizImagesContainer {
   display: flex;
-  flex-direction: row; /* 이미지를 가로로 배열 */
+  flex-direction: row; 
   justify-content: center;
   align-items: center;
-  margin-top: 0rem;
 }
