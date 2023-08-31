@@ -18,9 +18,6 @@
 /* 컨테이너 스타일 설정 */
 .container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   background-color: #f9f9f9;
   font-family: "KBO-Dia-Gothic_bold", sans-serif; /* 커스텀 폰트 적용 */
 }
@@ -32,12 +29,10 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  max-width: 500;
+  max-width: 65%;
   background-color: #ffffff;
-  border: 2px solid #c0c0c0;
   box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.3);
-  position: relative;
-  margin: 10% auto;
+  margin: 5% auto;
   font-family: "GangwonEduPowerExtraBoldA", sans-serif; /* 커스텀 폰트 적용 */
 }
 .captchaBoxLow {
@@ -48,7 +43,16 @@
   font-size: 2rem;
   width: 100%;
   background-color: #ffffff;
-  border: 2px solid #c0c0c0;
+  border-top: 1px solid #c0c0c0;
+}
+.captchaLowContent {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  width: 100%;
+  padding: 0.5%;
+  padding-left: 5%
 }
 /* 캡차 타이틀 스타일 설정 */
 .captchaTitle {

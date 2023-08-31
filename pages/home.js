@@ -1,4 +1,15 @@
-return (
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import styles from "../styles/Home.module.css";
+
+export default function Home() {
+  const router = useRouter();
+  const { answer, selectedImage, score } = router.query;
+  const startQuiz = () => {
+    router.push(`/quiz`);
+  };
+
+  return (
     <div className={styles.container}>
       {score}
       <div className={styles.captchaBox}>
@@ -16,30 +27,18 @@ return (
             </div>
           </div>
         <div className={styles.captchaContent}>
-          <p>
-            
-          </p>
-          <div className={styles.quizImagesContainer}>
-            <div className={styles.quizImage}>
-              <img
-                className={styles["quiz-image"]}
-                src={imageSrc1}
-                alt="Face 1"
-                onClick={() => handleImageClick(imageSrc1)}
-              />
-            </div>
-            <div className={styles.quizImage}>
-              <img
-                className={styles["quiz-image"]}
-                src={imageSrc2}
-                alt="Face 2"
-                onClick={() => handleImageClick(imageSrc2)}
-              />
-            </div>
-          </div>
+        <button
+                onClick={startQuiz}
+              >
+                돌아가기
+              </button>
         </div>
         <div className={styles.captchaBoxLow}>
-          asd
+        <div className={styles.captchaLowContent}>
+        <img src="images/home.png"/>
+        <p>score</p>
+        </div>
+        
         </div>
       </div>
     </div>
