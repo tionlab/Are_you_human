@@ -95,6 +95,9 @@ export default function Quiz() {
             </div>
           </div>
         </div>
+        <div className={styles.captchaBoxLow}>
+          asd
+        </div>
       </div>
     </div>
   );

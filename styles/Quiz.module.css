@@ -33,7 +33,6 @@
   justify-content: center;
   box-sizing: border-box;
   max-width: 500;
-  padding: 1%;
   background-color: #ffffff;
   border: 2px solid #c0c0c0;
   box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.3);
@@ -41,7 +40,16 @@
   margin: 10% auto;
   font-family: "GangwonEduPowerExtraBoldA", sans-serif; /* 커스텀 폰트 적용 */
 }
-
+.captchaBoxLow {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  font-size: 2rem;
+  width: 100%;
+  background-color: #ffffff;
+  border: 2px solid #c0c0c0;
+}
 /* 캡차 타이틀 스타일 설정 */
 .captchaTitle {
   flex-direction: column;
