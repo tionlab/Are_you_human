@@ -6,6 +6,9 @@ const NUM_IMAGES = 999;
 
 export default function Quiz() {
   const router = useRouter();
+  const goHome = () => {
+    router.push(`/home`);
+  };
 
   const [imageSrc1, setImageSrc1] = useState("");
   const [imageSrc2, setImageSrc2] = useState("");
@@ -57,7 +60,6 @@ export default function Quiz() {
 
   return (
     <div className={styles.container}>
-      {score}
       <div className={styles.captchaBox}>
         <div className={styles.captchaTitle}>
           <div className={styles.captchaTitleContent}>
@@ -97,8 +99,8 @@ export default function Quiz() {
         </div>
         <div className={styles.captchaBoxLow}>
         <div className={styles.captchaLowContent}>
-        <img src="images/home.png"/>
-        <p>score</p>
+        <img onclick={() => goHome} src="images/home.png"/>
+        <p>&nbsp;&nbsp;&nbsp;</p>
         </div>
         
         </div>

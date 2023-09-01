@@ -1,16 +1,14 @@
 /* 커스텀 폰트 설정 */
 @font-face {
   font-family: "KBO-Dia-Gothic_bold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "GangwonEduPowerExtraBoldA";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -18,13 +16,14 @@
 /* 컨테이너 스타일 설정 */
 .container {
   display: flex;
-  background-color: #f9f9f9;
-  font-family: "KBO-Dia-Gothic_bold", sans-serif; /* 커스텀 폰트 적용 */
+  font-family: "KBO-Dia-Gothic_bold", sans-serif;
 }
 
 /* 캡차 박스 스타일 설정 */
 .captchaBox {
   display: flex;
+  overflow: hidden;
+  width: 600px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -33,8 +32,10 @@
   background-color: #ffffff;
   box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.3);
   margin: 5% auto;
-  font-family: "GangwonEduPowerExtraBoldA", sans-serif; /* 커스텀 폰트 적용 */
+  font-family: "GangwonEduPowerExtraBoldA", sans-serif;
+  /* 커스텀 폰트 적용 */
 }
+
 .captchaBoxLow {
   flex-direction: column;
   align-items: center;
@@ -45,15 +46,15 @@
   background-color: #ffffff;
   border-top: 1px solid #c0c0c0;
 }
+
 .captchaLowContent {
   display: flex;
   align-items: center;
-  margin-top: 0.5rem;
   font-size: 2rem;
   width: 100%;
-  padding: 0.5%;
   padding-left: 5%
 }
+
 /* 캡차 타이틀 스타일 설정 */
 .captchaTitle {
   flex-direction: column;
@@ -78,15 +79,18 @@
   font-size: 1.5rem;
   color: #ffffff;
 }
+
 .captchaTitleContent2 {
   margin-top: 0.5rem;
   font-size: 3rem;
   color: #ffffff;
 }
+
 .captchaTitleContent3 {
   font-size: 1.6rem;
   color: #ffffff;
 }
+
 /* 캡차 내용 스타일 설정 */
 .captchaContent {
   text-align: center;
@@ -99,8 +103,8 @@
 /* 퀴즈 이미지 스타일 설정 */
 .quizImage {
   padding: 1%;
-  max-width: 95%;
   cursor: pointer;
+  object-fit: cover;
   border: 1px solid #cfcfcf;
   border-radius: 4px;
   margin: 0 1rem;
@@ -115,7 +119,7 @@
 
 .quizImagesContainer {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
