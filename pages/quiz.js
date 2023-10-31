@@ -1,21 +1,35 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/Quiz.module.css";
+import { resolve } from "styled-jsx/css";
 
 const NUM_IMAGES = 999;
 
 export default function Quiz() {
   const router = useRouter();
+  const { username, score, life, history } = router.query;
   const goHome = () => {
-    router.push(`/home`);
-  };
+    router.push({
+      pathname: '/home',
+      query: { history: history },
+  });
+};
 
   const [imageSrc1, setImageSrc1] = useState("");
   const [imageSrc2, setImageSrc2] = useState("");
-  const [score, setScore] = useState("");
+  const relife = life ? life : 3
+  const rescore = score ? score : 0
 
   useEffect(() => {
-    setScore(4)
+    if (relife <= 0) {
+      router.push({
+        pathname: '/gameover',
+        query: { username: username, score: rescore, history: history },
+    });
+    }
+  }, []);
+
+  useEffect(() => {
     // 무작위로 1 또는 2를 선택하여 이미지 카테고리를 결정
     const random = Math.floor(Math.random() * 2) + 1;
     const category = random === 1 ? "fake" : "real";
@@ -34,13 +48,11 @@ export default function Quiz() {
 
     // 이미지 경로를 설정
     setImageSrc1(
-      `/images/${category}/${
-        category === "fake" ? "fake" : "real"
+      `/images/${category}/${category === "fake" ? "fake" : "real"
       } (${randomImageNumber1}).jpg`
     );
     setImageSrc2(
-      `/images/${category2}/${
-        category2 === "fake" ? "fake" : "real"
+      `/images/${category2}/${category2 === "fake" ? "fake" : "real"
       } (${randomImageNumber2}).jpg`
     );
   }, []);
@@ -51,32 +63,32 @@ export default function Quiz() {
     const isCorrect = correctImageCategory === "real";
 
     // 결과 페이지로 이동하며 선택한 이미지와 정답 여부를 전달
-    router.push(
-      `/result?answer=${isCorrect}&selectedImage=${encodeURIComponent(
-        chosenImage
-      )}&score=${score}`
-    );
+    router.push({
+      pathname: '/result',
+      query: { username: username, answer: isCorrect, selectedImage: encodeURIComponent(chosenImage), score: score, life: relife, history: history},
+  });
   };
 
   return (
     <div className={styles.container}>
+      <div><img src={`./images/${relife}.png`}></img></div>
       <div className={styles.captchaBox}>
         <div className={styles.captchaTitle}>
           <div className={styles.captchaTitleContent}>
-          <div className={styles.captchaTitleContent1}>
-          다음을 선택하세요<br/>
-          </div>
-          <div className={styles.captchaTitleContent2}>
-          실제 인간의 사진<br/>
-          </div>
-          <div className={styles.captchaTitleContent3}>
-          (인공지능 생성 인간 vs 실제 인간)
-          </div>
+            <div className={styles.captchaTitleContent1}>
+              다음을 선택하세요<br />
+            </div>
+            <div className={styles.captchaTitleContent2}>
+              실제 인간의 사진<br />
+            </div>
+            <div className={styles.captchaTitleContent3}>
+              (인공지능 생성 인간 vs 실제 인간)
             </div>
           </div>
+        </div>
         <div className={styles.captchaContent}>
           <p>
-            
+
           </p>
           <div className={styles.quizImagesContainer}>
             <div className={styles.quizImage}>
@@ -98,11 +110,11 @@ export default function Quiz() {
           </div>
         </div>
         <div className={styles.captchaBoxLow}>
-        <div className={styles.captchaLowContent}>
-        <img onclick={() => goHome} src="images/home.png"/>
-        <p>&nbsp;&nbsp;&nbsp;</p>
-        </div>
-        
+          <div className={styles.captchaLowContent}>
+            <img onClick={goHome} className={styles.captchahome} src="images/home.png" />
+            <a className={styles.captchascore}>Score : {rescore}</a>
+            <p>&nbsp;&nbsp;&nbsp;</p>
+          </div>
         </div>
       </div>
     </div>

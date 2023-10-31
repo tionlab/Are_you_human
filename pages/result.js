@@ -18,15 +18,21 @@ async function preprocessImage(imageElement) {
 
 export default function Result() {
   const router = useRouter();
-  const { answer, selectedImage, score } = router.query;
+  const { username, answer, selectedImage, score, life, history } = router.query;
   const startQuiz = () => {
-    router.push(`/quiz`);
+    router.push({
+      pathname: '/quiz',
+      query: { username: username, score: rescore, life: relife, history: history },
+  });
   };
   const [predictionResult, setPredictionResult] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [correct, setCorrect] = useState("정답 확인 중 . . .");
+  const [correct1, setCorrect1] = useState("정답 확인 중 . . .");
+  const [correct2, setCorrect2] = useState("정답 확인 중 . . .");
+  const [correct3, setCorrect3] = useState("정답 확인 중 . . .");
   const [backup, setBackup] = useState("");
-  const [scored, setScored] = useState(score)
+  const [rescore, setRescore] = useState(score ? score : 0)
+  const [relife, setlife] = useState(life ? life : 3)
 
   useEffect(() => {
     async function firework() {
@@ -85,21 +91,32 @@ export default function Result() {
           setBackup("");
         } else {
           setBackup(
-            "이런... 사진 판독 인공지능이 틀리다니, 굉장히 맞추기 힘든 사진이였나 보네요!"
+            "이런... 사진 판독 인공지능이 틀리다니,\n굉장히 맞추기 힘든 사진이였나 보네요!"
           );
         }
         setIsLoading(false);
       } catch (error) {
         console.error("Error loading and predicting:", error);
+        // 오류 발생 시 페이지 강제 새로고침
+        setTimeout(() => {
+          location.reload();
+        }, 500);
       }
     }
     if (answer !== undefined) {
       if (answer === "true") {
         firework();
         firework();
-        setCorrect("정답입니다! 인간임이 입증되었습니다. 😎");
+        setCorrect1("정답입니다!");
+        setCorrect2("인간임이 입증되었습니다.");
+        setCorrect3("😎");
+        setRescore(parseFloat(rescore) + 10)
+        
       } else if (answer === "false") {
-        setCorrect("틀렸습니다..🤔 다시 시도 해보세요!");
+        setCorrect1("틀렸습니다..");
+        setCorrect2("다시 시도 해보세요!");
+        setCorrect3("🤔");
+        setlife(parseFloat(relife) - 1)
       }
       playAudio(answer === "true");
       loadModelAndPredict();
@@ -135,35 +152,41 @@ export default function Result() {
 
   return (
     <div className={styles.container}>
-      <p>{scored}</p>
+    <div><img src={`./images/${relife}.png`}></img></div>
       <div className={styles.captchaBox}>
-        <div className={styles.captchaTitle}>Are You Human?</div>
+        <div className={styles.captchaTitle}>
+          <div className={styles.captchaTitleContent}>
+            <div className={styles.captchaTitleContent1}>
+              {correct1}{correct3}<br />
+            </div>
+            <div className={styles.captchaTitleContent2}>
+              {correct2}<br />
+            </div>
+            <div className={styles.captchaTitleContent3}>
+              {isLoading ? (
+                `사진 판독 인공지능이 생각 중 이에요! 잠시만 기다려주세요 . . .`
+              ) : predictionResult ? (
+                `사진 판독 인공지능은 이 사진을\n${predictionResult.confidence}%의 확률로\n${predictionResult.predictedClass} 이라고 생각했어요!\n${backup}`
+              ) : null}
+            </div>
+          </div>
+        </div>
         <div className={styles.captchaContent}>
-          <p>{correct}</p>
           <img id="result-image" src={selectedImage} alt="Face" />
-          {isLoading ? (
-            <p>
-              사진 판독 인공지능이 생각 중 이에요! 잠시만 기다려주세요 . . .
-            </p>
-          ) : predictionResult ? (
-            <p>
-              사진 판독 인공지능은 이 사진을 {predictionResult.confidence}%의
-              확률로
-              <br />
-              {predictionResult.predictedClass} 이라고 생각했어요!
-              <br />
-              {backup}
-            </p>
-          ) : null}
-          <div className={styles.button}>
-            {!isLoading && (
-              <button
-                className={`${styles["btn-hover"]} ${styles["color-1"]}`}
-                onClick={startQuiz}
-              >
-                돌아가기
-              </button>
-            )}
+        </div>
+        <div className={styles.captchaBoxLow}>
+          <div className={styles.captchaLowContent}>
+            <a className={styles.captchascore}>Score : {rescore}</a>
+            <div className={styles.button}>
+              {!isLoading && (
+                <button
+                  className={`${styles["btn-hover"]} ${styles["color-1"]}`}
+                  onClick={startQuiz}
+                >
+                  돌아가기
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

@@ -1,17 +1,52 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const router = useRouter();
-  const { answer, selectedImage, score } = router.query;
+  const { history } = router.query;
   const startQuiz = () => {
-    router.push(`/quiz`);
+    router.push({
+      pathname: '/quiz',
+      query: { username: nickname, history: history },
+    });
   };
+  const [rankings, setRankings] = useState([]);
+  const [nickname, setNickname] = useState(null);
+
+  useEffect(() => {
+    // URL에서 history 쿼리 파싱
+    const history = router.query.history;
+
+    if (history) {
+      // history를 쉼표(,)를 기준으로 분할하여 배열로 변환
+      const historyArray = history.split(',');
+
+      // 닉네임과 점수를 담을 배열
+      const scores = [];
+
+      // 각 항목을 반복하면서 닉네임과 점수를 추출하여 scores 배열에 객체로 저장
+      historyArray.forEach(item => {
+        const [nickname, score] = item.split('_');
+        scores.push({ nickname, score: parseInt(score) || 0 });
+      });
+
+      // 점수를 기준으로 내림차순 정렬
+      scores.sort((a, b) => b.score - a.score);
+
+      // 상위 5명 추출
+      const topFive = scores.slice(0, 5);
+
+      setRankings(topFive);
+    }
+  }, [router.query.history]);
+  
+  const handleChange = useCallback((e) => {
+    setNickname(e.target.value)
+  }, [nickname])
 
   return (
     <div className={styles.container}>
-      {score}
       <div className={styles.captchaBox}>
         <div className={styles.captchaTitle}>
           <div className={styles.captchaTitleContent}>
@@ -27,19 +62,20 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.captchaContent}>
+          <ol>
+            {rankings.map((player, index) => (
+              `${index + 1}위 ${player.nickname ? player.nickname : '이름없는누군가'} / ${player.score}점\n`
+            ))}
+          </ol>
+          <div>
+          <input className={`${styles["btn-hover2"]} ${styles["color-1"]}`} value={nickname} placeholder="닉네임 입력" maxLength="7" onChange={handleChange}></input>
+          </div>
           <button
+            className={`${styles["btn-hover"]} ${styles["color-1"]}`}
             onClick={startQuiz}
           >
-            돌아가기
+            시작하기
           </button>
-        </div>
-        <div className={styles.captchaBoxLow}>
-          <div className={styles.captchaLowContent}>
-            <div className={styles.captchaLowInContent}>
-              <img src="images/home.png" />
-              <p>score</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

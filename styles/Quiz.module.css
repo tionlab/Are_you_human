@@ -31,7 +31,7 @@
   max-width: 65%;
   background-color: #ffffff;
   box-shadow: 2px 7px 10px rgba(0, 0, 0, 0.3);
-  margin: 5% auto;
+  margin: 3% auto;
   font-family: "GangwonEduPowerExtraBoldA", sans-serif;
   /* 커스텀 폰트 적용 */
 }
@@ -119,6 +119,22 @@
 
 .quizImagesContainer {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.captchahome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.captchascore {
+  display: flex;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
