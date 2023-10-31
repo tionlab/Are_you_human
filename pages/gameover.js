@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../styles/Result.module.css";
 
-const NUM_IMAGES = 999;
 
 export default function Quiz() {
     const router = useRouter();
     const { username, score, history } = router.query;
     const [ranking, setRanking] = useState(1);
     const rescore = score ? score : 0
+    const endmp3 = "/audio/end.mp3";
 
     const goHome = () => {
         const updatedHistory = history ? `${history},${username}_${rescore}` : `${username}_${rescore}`;
@@ -17,6 +17,13 @@ export default function Quiz() {
             query: { history: updatedHistory },
         });
     };
+    useEffect(() => {
+        const audio = new Audio(endmp3);
+        audio.load(); // 음악 파일 로드
+        audio.play().catch(error => {
+            console.error("음악 파일 재생 중 오류 발생: ", error);
+        });
+    }, []);
 
     useEffect(() => {
         if (history) {

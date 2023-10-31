@@ -6,13 +6,16 @@ export default function Home() {
   const router = useRouter();
   const { history } = router.query;
   const startQuiz = () => {
+    const sanitizedNickname = nickname
+      .replace(/[\s!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/g, ''); // 특수문자와 공백 제거
+    const finalTranscript = sanitizedNickname.length > 7 ? sanitizedNickname.slice(0, 7) : sanitizedNickname; // 7자 초과된 문자열을 삭제
     router.push({
       pathname: '/quiz',
-      query: { username: nickname, history: history },
+      query: { username: finalTranscript, history: history },
     });
   };
   const [rankings, setRankings] = useState([]);
-  const [nickname, setNickname] = useState(null);
+  const [nickname, setNickname] = useState(undefined);
 
   useEffect(() => {
     // URL에서 history 쿼리 파싱
