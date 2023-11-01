@@ -48,6 +48,12 @@ export default function Home() {
     setNickname(e.target.value)
   }, [nickname])
 
+  const handleKeyPress = e => {
+    if(e.key === 'Enter') {
+      startQuiz();
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.captchaBox}>
@@ -71,7 +77,7 @@ export default function Home() {
             ))}
           </ol>
           <div>
-          <input className={`${styles["btn-hover2"]} ${styles["color-1"]}`} value={nickname} placeholder="닉네임 입력" maxLength="7" onChange={handleChange}></input>
+          <input className={`${styles["btn-hover2"]} ${styles["color-1"]}`} value={nickname} placeholder="닉네임 입력" maxLength="7" onKeyDown={handleKeyPress} onChange={handleChange}></input>
           </div>
           <button
             className={`${styles["btn-hover"]} ${styles["color-1"]}`}
