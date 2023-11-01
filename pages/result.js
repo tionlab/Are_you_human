@@ -172,7 +172,7 @@ export default function Result() {
           </div>
         </div>
         <div className={styles.captchaContent}>
-          <img id="result-image" src={selectedImage} alt="Face" />
+          <img id="result-image" src={decodeURIComponent(selectedImage)} alt="Face" />
         </div>
         <div className={styles.captchaBoxLow}>
           <div className={styles.captchaLowContent}>
